@@ -14,3 +14,5 @@ print closest_point(points, point)
 print points[:, 0]
 
 #added comment
+
+#another test
