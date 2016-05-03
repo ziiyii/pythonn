@@ -12,3 +12,5 @@ points = np.asarray([[1,2,3,0],[0,2,3,4],[1,2,3,4]])
 
 print closest_point(points, point)
 print points[:, 0]
+
+#added comment
