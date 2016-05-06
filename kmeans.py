@@ -42,7 +42,8 @@ def plot_data(data, centroids):
 
 # hard-coded data
 data_size = 1000
-k = 20
+k = 4
+
 centroids_indices = range(k)
 data_indices = range(data_size)
 colors = cm.Dark2(np.linspace(0, 1, k))
