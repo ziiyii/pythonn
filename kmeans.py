@@ -1,5 +1,3 @@
-# k-means algorithm on square [0,1] x [0,1]
-
 import copy
 import numpy as np
 import matplotlib.pyplot as plt
@@ -41,19 +39,19 @@ def plot_data(data, centroids):
 
 
 # hard-coded data
-data_size = 1000
-k = 4
+data_size = 100
+k = 6
 
 centroids_indices = range(k)
 data_indices = range(data_size)
 colors = cm.Dark2(np.linspace(0, 1, k))
-waiting_time = 0.01
+waiting_time = 0.0001
 
 
 # algorithm beginning
 centroids = np.random.rand(k, 2)
 old_centroids = np.zeros((k, 2))
-data = np.random.rand(data_size, 2)
+data = np.random.normal(0, 1.5, size = (data_size, 2))
 cluster_assignment = [0] * data_size
 
 plot_data(data, centroids)
