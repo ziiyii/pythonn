@@ -38,21 +38,51 @@ def plot_data(data, centroids):
     plt.clf()
 
 
+def generate_spheric_clusters(data_size, k):
+    weights = np.random.uniform(0, 1, k)
+    weights = weights / np.sum(weights)
+    number_in_clusters = np.floor(np.multiply(weights, data_size))
+    new_data_size = int(np.sum(number_in_clusters))
+
+    means1 = np.random.choice(20, k, replace = False)
+    means2 = np.random.choice(20, k, replace = False)
+    variances = np.random.randint(1, 2, k)
+
+    data = np.empty([new_data_size, 2])
+    index_begin = 0
+
+    for i in range(k):
+        size = number_in_clusters[i]
+        index_end = index_begin + size
+        data[index_begin:index_end, 0] = np.random.normal(means1[i], variances[i], size)
+        data[index_begin:index_end, 1] = np.random.normal(means2[i], variances[i], size)
+        index_begin = index_end
+
+    return data, new_data_size
+
+
 # hard-coded data
-data_size = 100
+data_size = 10000
 k = 6
+np.random.seed(1)
 
 centroids_indices = range(k)
-data_indices = range(data_size)
 colors = cm.Dark2(np.linspace(0, 1, k))
-waiting_time = 0.0001
+waiting_time = 0.001
 
+data, data_size = generate_spheric_clusters(data_size, k)
 
 # algorithm beginning
-centroids = np.random.rand(k, 2)
+centroids = np.empty([k, 2])
+means1 = np.random.choice(2 * k, k, replace = False)
+means2 = np.random.choice(2 * k, k, replace = False)
+for i in centroids_indices:
+    centroids[i, 0] = np.random.normal(means1[i], 2, 1)
+    centroids[i, 1] = np.random.normal(means2[i], 2, 1)
+
 old_centroids = np.zeros((k, 2))
-data = np.random.normal(0, 1.5, size = (data_size, 2))
 cluster_assignment = [0] * data_size
+data_indices = range(data_size)
 
 plot_data(data, centroids)
 
