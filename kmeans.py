@@ -20,7 +20,7 @@ def plot_iteration(data, cluster_assignment, centroids):
             x = data[slicing_indices][:, 0]
             y = data[slicing_indices][:, 1]
             plt.scatter(x, y, color = col, s = [50]*len(x))
-        plt.scatter(centroids[index, 0], centroids[index, 1], color = col, s = [200], edgecolors = 'black')
+        plt.scatter(centroids[index, 0], centroids[index, 1], color = col, s = [100], edgecolors = 'black')
     plt.draw()
     plt.pause(waiting_time)
     plt.clf()
@@ -32,7 +32,7 @@ def plot_data(data, centroids):
     plt.scatter(x, y, color='black', s=[50] * len(x))
     x = centroids[:, 0]
     y = centroids[:, 1]
-    plt.scatter(x, y, color='green', s=[200] * len(x))
+    plt.scatter(x, y, color='green', s=[100] * len(x))
     plt.draw()
     plt.pause(waiting_time)
     plt.clf()
@@ -44,8 +44,8 @@ def generate_spheric_clusters(data_size, k):
     number_in_clusters = np.floor(np.multiply(weights, data_size))
     new_data_size = int(np.sum(number_in_clusters))
 
-    means1 = np.random.choice(20, k, replace = False)
-    means2 = np.random.choice(20, k, replace = False)
+    means1 = np.random.choice(40, k, replace = False)
+    means2 = np.random.choice(40, k, replace = False)
     variances = np.random.randint(1, 2, k)
 
     data = np.empty([new_data_size, 2])
@@ -64,7 +64,6 @@ def generate_spheric_clusters(data_size, k):
 # hard-coded data
 data_size = 10000
 k = 6
-np.random.seed(1)
 
 centroids_indices = range(k)
 colors = cm.Dark2(np.linspace(0, 1, k))
